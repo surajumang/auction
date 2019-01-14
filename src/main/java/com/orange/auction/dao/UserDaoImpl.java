@@ -1,7 +1,6 @@
 package com.orange.auction.dao;
 
-import com.orange.auction.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.orange.auction.model.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -17,23 +16,23 @@ public class UserDaoImpl implements UserDao {
     private EntityManager entityManager;
 
     @Override
-    public User getUserByEmail(String email){
+    public Member getUserByEmail(String email){
         String hql = "from user where email= :email";
-        return entityManager.createQuery(hql, User.class)
+        return entityManager.createQuery(hql, Member.class)
                 .setParameter("email", email)
                 .getResultStream()
                 .findAny()
-                .orElse(User.getDummyUser());
+                .orElse(Member.getDummyMember());
     }
 
     @Override
-    public void addUser(User user) {
-        entityManager.persist(user);
+    public void addUser(Member member) {
+        entityManager.persist(member);
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return entityManager.createQuery("from user", User.class)
+    public List<Member> getAllUsers() {
+        return entityManager.createQuery("from user", Member.class)
                 .getResultStream().collect(Collectors.toList());
     }
 }
