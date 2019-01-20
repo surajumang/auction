@@ -1,6 +1,6 @@
 package com.orange.auction.endpoints;
 
-import com.orange.auction.model.User;
+import com.orange.auction.model.Member;
 import com.orange.auction.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,20 +18,20 @@ public class SampleEndpoint {
     private UserService userService;
 
     @GetMapping("/users/{email}")
-    public User sayHello(
+    public Member sayHello(
             @PathVariable("email")String email){
         logger.info("Email recieved is " + email);
         return userService.getUser(email);
     }
 
     @GetMapping("/users")
-    public List<User> getUsers(){
+    public List<Member> getUsers(){
         return userService.getUsers();
     }
 
     @PostMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> addUser(@RequestBody User user){
-        userService.addUser(user);
+    public ResponseEntity<Member> addUser(@RequestBody Member member){
+        userService.addUser(member);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

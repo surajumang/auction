@@ -1,11 +1,11 @@
 package com.orange.auction.service;
 
-import com.orange.auction.model.User;
+import com.orange.auction.model.Member;
 
 import java.util.List;
 
 public interface UserService {
-    User getUser(String email);
-    List<User> getUsers();
-    void addUser(User user);
+    Member getUser(String email);
+    List<Member> getUsers();
+    void addUser(Member member);
 }
