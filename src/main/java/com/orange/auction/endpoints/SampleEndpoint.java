@@ -17,6 +17,23 @@ public class SampleEndpoint {
     @Autowired
     private UserService userService;
 
+    private static class Message {
+		private String message;
+
+		public Message(String message) {
+			this.message = message;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+	}
+
+    @GetMapping("/echo/{greeting}")
+    public Message echo(@PathVariable(name = "greeting") String greeting){
+        return new Message(greeting);
+    }
+
     @GetMapping("/users/{email}")
     public Member sayHello(
             @PathVariable("email")String email){

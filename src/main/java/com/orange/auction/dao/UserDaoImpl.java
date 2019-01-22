@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Member getUserByEmail(String email){
-        String hql = "from user where email= :email";
+        String hql = "from MEMBER where EMAIL= :email";
         return entityManager.createQuery(hql, Member.class)
                 .setParameter("email", email)
                 .getResultStream()
@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<Member> getAllUsers() {
-        return entityManager.createQuery("from user", Member.class)
+        return entityManager.createQuery("from member", Member.class)
                 .getResultStream().collect(Collectors.toList());
     }
 }
