@@ -20,7 +20,7 @@ public class Member extends BaseModel {
     @Id
     @Column(name = "ID")
     @GeneratedValue
-    private int id;
+    private Long id;
     @Column(name = "EMAIL")
     private String email;
     @Column(name="FIRST_NAME")

@@ -1,6 +1,6 @@
 package com.orange.auction.service;
 
-import com.orange.auction.dao.UserDao;
+import com.orange.auction.dao.MemberDao;
 import com.orange.auction.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,22 +8,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class MemberServiceImpl implements MemberService {
     @Autowired
-    private UserDao userDao;
+    private MemberDao memberDao;
+
+    @Override
+    public Member getById(Long id) {
+        return memberDao.getById(id);
+    }
 
     @Override
     public Member getUser(String email) {
-        return userDao.getUserByEmail(email);
+        return memberDao.getUserByEmail(email);
     }
 
     @Override
     public void addUser(Member member) {
-        userDao.addUser(member);
+        memberDao.addUser(member);
     }
 
     @Override
     public List<Member> getUsers() {
-        return userDao.getAllUsers();
+        return memberDao.getAllUsers();
     }
 }

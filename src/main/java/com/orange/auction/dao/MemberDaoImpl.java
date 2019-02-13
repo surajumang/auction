@@ -5,15 +5,21 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Transactional
 @Repository
-public class UserDaoImpl implements UserDao {
+public class MemberDaoImpl implements MemberDao {
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Override
+    public Member getById(Long id) {
+        return entityManager.find(Member.class, id);
+    }
 
     @Override
     public Member getUserByEmail(String email){
@@ -32,7 +38,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<Member> getAllUsers() {
-        return entityManager.createQuery("from member", Member.class)
-                .getResultStream().collect(Collectors.toList());
+        CriteriaQuery<Member> memberCriteriaQuery = entityManager.getCriteriaBuilder().createQuery(Member.class);
+        memberCriteriaQuery.select(memberCriteriaQuery.from(Member.class));
+
+        return entityManager.createQuery(memberCriteriaQuery).getResultList();
     }
 }

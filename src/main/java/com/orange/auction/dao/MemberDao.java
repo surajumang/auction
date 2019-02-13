@@ -4,7 +4,8 @@ import com.orange.auction.model.Member;
 
 import java.util.List;
 
-public interface UserDao {
+public interface MemberDao {
+    Member getById(Long id);
     Member getUserByEmail(String email);
     List<Member> getAllUsers();
     void addUser(Member member);
