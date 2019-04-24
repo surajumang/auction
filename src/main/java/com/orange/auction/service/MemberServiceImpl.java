@@ -2,15 +2,18 @@ package com.orange.auction.service;
 
 import com.orange.auction.dao.MemberDao;
 import com.orange.auction.model.Member;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-    @Autowired
-    private MemberDao memberDao;
+
+    private final MemberDao memberDao;
+
+    public MemberServiceImpl(MemberDao memberDao) {
+        this.memberDao = memberDao;
+    }
 
     @Override
     public Member getById(Long id) {

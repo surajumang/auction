@@ -2,7 +2,6 @@ package com.orange.auction.endpoints;
 
 import com.orange.auction.model.Member;
 import com.orange.auction.service.MemberService;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +12,11 @@ import java.util.List;
 @RequestMapping("/members")
 public class MemberEndpoint {
 
-    @Autowired
-    private MemberService memberService;
+    private final MemberService memberService;
+
+    public MemberEndpoint(MemberService memberService) {
+        this.memberService = memberService;
+    }
 
     @GetMapping("/member")
     public ResponseEntity<Member> getMemberByEmail(@RequestParam("email") String email){

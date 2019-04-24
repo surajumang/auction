@@ -2,7 +2,6 @@ package com.orange.auction.endpoints;
 
 import com.orange.auction.model.Member;
 import com.orange.auction.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +13,12 @@ import java.util.logging.Logger;
 @RestController
 public class SampleEndpoint {
     Logger logger = Logger.getLogger(getClass().getName());
-    @Autowired
-    private MemberService memberService;
+
+    private final MemberService memberService;
+
+    public SampleEndpoint(MemberService memberService) {
+        this.memberService = memberService;
+    }
 
     private static class Message {
 		private String message;

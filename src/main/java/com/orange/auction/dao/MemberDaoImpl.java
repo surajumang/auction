@@ -8,13 +8,17 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Transactional
 @Repository
 public class MemberDaoImpl implements MemberDao {
-    @PersistenceContext
-    private EntityManager entityManager;
+
+
+    private final EntityManager entityManager;
+
+    public MemberDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public Member getById(Long id) {
@@ -23,18 +27,24 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public Member getUserByEmail(String email){
-        String hql = "from MEMBER where EMAIL= :email";
-        return entityManager.createQuery(hql, Member.class)
-                .setParameter("email", email)
-                .getResultStream()
-                .findAny()
-                .orElse(Member.getDummyMember());
+        entityManager.getCriteriaBuilder().createQuery(Member.class).where();
+        return new Member();
     }
 
     @Override
     public void addUser(Member member) {
         entityManager.persist(member);
     }
+
+    /*
+    example of
+    CriteriaBuilder builder = session.getCriteriaBuilder();
+         CriteriaQuery<String> query = builder.createQuery(String.class);
+         Root<Employee> root = query.from(Employee.class);
+         query.select(root.get("name"));
+         Query<String> q=session.createQuery(query);
+         List<String> list=q.getResultList();
+     */
 
     @Override
     public List<Member> getAllUsers() {
