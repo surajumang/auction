@@ -51,11 +51,16 @@ public class Member extends BaseModel {
 
     }
 
-    public Member(String firstName){
+    public Member(String firstName) {
         this.firstName = firstName;
     }
 
-    private static final Member DUMMY_MEMBER = new Member("Empty Member");
+    public Member(String firstName, String email){
+        this.firstName = firstName;
+        this.email = email;
+    }
+
+    private static final Member DUMMY_MEMBER = new Member("Empty_Member", "email@email.email");
 
     public static Member getDummyMember() {
         return DUMMY_MEMBER;
