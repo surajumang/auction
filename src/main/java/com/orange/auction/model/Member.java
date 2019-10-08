@@ -8,10 +8,7 @@ import java.util.Set;
 /*
 Adding a user in to the DB using json post request.
 curl syntax to make a POST request :
-curl --header "Content-Type: application/json" \
-  --request POST \
-  --data '{"email":"surajumang08@gmail.com", "firstName":"Suraj", "lastName": "Kumar", "password":"sdflkjs"}' \
-  http://localhost:8080/users/
+curl --header "Content-Type: application/json" --request POST --data '{"email":"surajumang08@gmail.com", "firstName":"Suraj", "lastName": "Kumar", "password":"sdflkjs"}' http://localhost:8080/members
  */
 
 @Entity(name="MEMBER")
