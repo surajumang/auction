@@ -1,0 +1,22 @@
+server:
+    port: 8080
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: 123456
+        url: jdbc:mysql://localhost:3306/auction
+        username: javaadmin
+    jpa:
+        hibernate:
+            ddl-auto: update
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        show-sql: true
+    kafka:
+        producer:
+            bootstrap-servers: localhost:9092
+            key-serializer: org.apache.kafka.common.serialization.LongSerializer
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
