@@ -21,6 +21,7 @@ import javax.validation.constraints.Pattern;
  */
 @Data
 public class MemberDetails {
+    private Long id;
     private String email;
     @Pattern(regexp = "[A-Za-z]+", message = "Enter a valid first name")
     private String firstName;

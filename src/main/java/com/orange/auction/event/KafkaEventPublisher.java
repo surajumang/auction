@@ -12,6 +12,7 @@ package com.orange.auction.event;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +29,13 @@ public class KafkaEventPublisher {
     @Autowired
     private KafkaTemplate<Long, String> producerTemplate;
 
+    @Value("${toggle.kafka.publish-events}")
+    private boolean publishEvents;
+
     public static final String TOPIC_NAME = "TOPIC_EVENT_LOG";
 
     public void publishEvent(Event event){
+        if (! publishEvents) return;
         ProducerRecord<Long, String> eventRecord =
                 new ProducerRecord<>(TOPIC_NAME, event.getMemberId(), Event.createData(event));
         producerTemplate.send(eventRecord);

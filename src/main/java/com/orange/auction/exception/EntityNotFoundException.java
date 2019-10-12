@@ -8,24 +8,16 @@
  * such Confidential Information and shall use it only in accordance with
  * the terms of an agreement between you and CZen.
  */
-package com.orange.auction.dto;
-
-import lombok.Data;
+package com.orange.auction.exception;
 
 /**
  * Created 10/12/2019
  *
  * @author sjkumar
  */
-@Data
-public class JSONWrapper {
-    private String value;
+public class EntityNotFoundException extends RuntimeException {
 
-    public JSONWrapper(String value) {
-        this.value = value;
-    }
-
-    public static JSONWrapper create(String value){
-        return new JSONWrapper(value);
+    public EntityNotFoundException(String entityName) {
+        super(String.format("%s not Found in DB", entityName));
     }
 }

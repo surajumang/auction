@@ -8,24 +8,22 @@
  * such Confidential Information and shall use it only in accordance with
  * the terms of an agreement between you and CZen.
  */
-package com.orange.auction.dto;
+package com.orange.auction.service;
 
-import lombok.Data;
+import com.orange.auction.model.Committee;
+import com.orange.auction.model.Member;
+
+import java.util.Optional;
 
 /**
  * Created 10/12/2019
  *
  * @author sjkumar
  */
-@Data
-public class JSONWrapper {
-    private String value;
+public interface CommitteeService {
+    void addNewCommittee(Committee committee);
+    Committee getCommittee(Long id);
+    void addMember(Long id, Member member);
+    void update(Committee committee);
 
-    public JSONWrapper(String value) {
-        this.value = value;
-    }
-
-    public static JSONWrapper create(String value){
-        return new JSONWrapper(value);
-    }
 }
