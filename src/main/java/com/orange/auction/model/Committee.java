@@ -12,7 +12,7 @@ public class Committee extends BaseModel {
     @Id
     @Column(name = "ID")
     @GeneratedValue
-    private int id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name="OWNER_ID")
     private Member owner;

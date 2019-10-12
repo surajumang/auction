@@ -33,7 +33,7 @@ public class Member extends BaseModel {
     /*
     The Set of committees a member is part of, since an owner is also a participant and not every
     member needs to be an owner we don't need a set of committees which are owned by the member.
-    When the owner creates a committe we need to add him as a participant as well.
+    When the owner creates a committe we need to addNewCommittee him as a participant as well.
      */
     @ManyToMany
     @JoinTable(name = "PARTICIPANT",
