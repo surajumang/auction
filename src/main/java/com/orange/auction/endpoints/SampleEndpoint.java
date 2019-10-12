@@ -32,7 +32,7 @@ public class SampleEndpoint {
 		}
 	}
 
-    @GetMapping("/echo/{greeting}")
+    @GetMapping("/visitor/{greeting}")
     public Message echo(@PathVariable(name = "greeting") String greeting){
         return new Message(greeting);
     }
