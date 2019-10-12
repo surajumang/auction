@@ -3,6 +3,7 @@ package com.orange.auction.endpoints;
 import com.orange.auction.dto.JSONWrapper;
 import com.orange.auction.dto.MemberDetails;
 import com.orange.auction.event.KafkaEventPublisher;
+import com.orange.auction.event.member.MemberProfileEditedEvent;
 import com.orange.auction.event.member.NewMemberCreatedEvent;
 import com.orange.auction.model.Member;
 import com.orange.auction.service.MemberService;
@@ -50,6 +51,7 @@ public class MemberEndpoint {
         Member member = memberService.getById(id);
         modelMapper.map(memberDetails, member);
         memberService.update(id, member);
+        eventPublisher.publishEvent( new MemberProfileEditedEvent(id, member));
         return ResponseEntity.ok(memberDetails);
     }
 
