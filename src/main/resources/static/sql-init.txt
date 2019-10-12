@@ -5,3 +5,5 @@ INSERT INTO member(email,first_Name,last_Name,password) VALUES ('admin@admin.com
 INSERT INTO member(email,first_Name,last_Name,password) VALUES ('john@gmail.com','john','doe','johndoe');
 
 INSERT INTO member(email,first_Name,last_Name,password) VALUES ('sham@yahoo.com','sham','tis','shamtis');
+
+INSERT INTO APIKEY(ID, API_KEY, CLIENT, VALID_UNTIL) VALUES (1, 'qwertyuiop', 'postman', '2020-10-12 11:19:21');
