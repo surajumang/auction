@@ -9,4 +9,5 @@ public interface MemberDao {
     Member getUserByEmail(String email);
     List<Member> getAllUsers();
     void addUser(Member member);
+    void update(Long id, Member member);
 }
