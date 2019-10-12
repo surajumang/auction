@@ -9,4 +9,5 @@ public interface MemberService {
     Member getUser(String email);
     List<Member> getUsers();
     void addUser(Member member);
+    void update(Long id, Member member);
 }

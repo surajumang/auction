@@ -31,6 +31,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public void update(Long id, Member member) {
+        memberDao.update(id, member);
+    }
+
+    @Override
     public List<Member> getUsers() {
         return memberDao.getAllUsers();
     }

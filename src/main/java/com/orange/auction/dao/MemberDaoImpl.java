@@ -2,12 +2,14 @@ package com.orange.auction.dao;
 
 import com.orange.auction.model.Member;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 @Transactional
 @Repository
@@ -34,6 +36,12 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public void addUser(Member member) {
         entityManager.persist(member);
+    }
+
+    @Override
+    public void update(Long id, Member member) {
+        Assert.isTrue(Objects.equals(id, member.getId()), "Different Ids");
+        entityManager.merge(member);
     }
 
     /*
